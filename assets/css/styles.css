@@ -48,7 +48,7 @@ a:hover {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--color-header-bg);  /* 변경: Header 배경을 어두운 색으로 */
+    background: var(--color-header-bg);  /* Header 배경 */
     box-shadow: var(--shadow-soft);
 }
 
@@ -67,7 +67,7 @@ a:hover {
 }
 
 .logo-img {
-    height: 44px;          /* 변경: 로고 크기 확대 (기존 36px) */
+    height: 44px;          /* 로고 크기 확대 */
     width: auto;
     background-color: #ffffff; /* 로고 배경색을 Header와 분리 */
     padding: 4px 8px;
@@ -77,7 +77,7 @@ a:hover {
 
 .main-nav {
     flex: 1 1 auto;
-    margin-left: 32px;     /* 변경: 로고와 주 메뉴 사이 여백 증가 */
+    margin-left: 32px;     /* 로고와 주 메뉴 사이 여백 증가 */
 }
 
 .main-menu {
@@ -170,7 +170,7 @@ a:hover {
     left: 0;
     top: calc(var(--header-height) + 3px);   /* 헤더 + 구분선(3px) 아래 */
     width: 100%;
-    background: var(--color-header-bg);      /* 변경: 서브메뉴 배경도 헤더와 동일 계열 */
+    background: var(--color-header-bg);      /* 서브메뉴 배경도 헤더와 동일 계열 */
     border-bottom: 1px solid var(--color-border);
     box-shadow: var(--shadow-soft);
     padding: 18px 0 20px;
@@ -212,7 +212,7 @@ a:hover {
     display: block;
     padding: 6px 0;
     font-size: 0.9rem;
-    color: #ffffff;         /* 변경: 흰색 계열 */
+    color: #ffffff;         /* 흰색 계열 */
     font-weight: 500;
 }
 
@@ -227,7 +227,7 @@ a:hover {
     line-height: 1.5;
 }
 
-/* 활성화된 메뉴의 서브 메뉴 표시 */
+/* 활성화된 메뉴의 서브 메뉴 표시 (데스크톱 기본) */
 .menu-item.active > .sub-menu {
     opacity: 1;
     visibility: visible;
@@ -235,7 +235,6 @@ a:hover {
 }
 
 /* ----- 제품 서브메뉴: 2개 제품 유형을 좌우로 배치 ----- */
-/* 좌우 2컬럼로 제품 유형을 배치하고, 각 유형 아래에 추후 상하로 제품 리스트 추가 가능하게 구성 */
 
 .sub-menu-grid-products {
     display: grid;
@@ -666,7 +665,7 @@ a:hover {
         left: 0;
         top: var(--header-height);
         width: 100%;
-        background: var(--color-header-bg);  /* 변경: 모바일 메뉴 배경도 동일 계열 */
+        background: var(--color-header-bg);  /* 모바일 메뉴 배경도 동일 계열 */
         box-shadow: var(--shadow-soft);
     }
 
@@ -683,16 +682,22 @@ a:hover {
         width: 100%;
     }
 
+    /* 모바일: 서브메뉴는 기본적으로 접고(active일 때만 보이게) */
     .sub-menu {
         position: static;
         width: 100%;
         top: 0;
         box-shadow: none;
         border-bottom: none;
-        padding: 8px 0 10px;
+        padding: 6px 0 8px;
+        display: none;          /* 기본 숨김 */
         opacity: 1;
         visibility: visible;
         transform: none;
+    }
+
+    .menu-item.active > .sub-menu {
+        display: block;         /* 선택된 메뉴만 펼쳐짐 (아코디언) */
     }
 
     .sub-menu-inner {
