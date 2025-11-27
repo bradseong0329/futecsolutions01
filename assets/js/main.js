@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error('Footer load error:', err))
     : Promise.resolve();
 
-  // 헤더와 푸터가 로드된 뒤에 네비게이션/검색 초기화
+  // 헤더와 푸터가 로드된 뒤에 초기화
   Promise.all([loadHeader, loadFooter]).then(() => {
     initNavigation();
     initSearchOverlay();
@@ -31,18 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// 주 메뉴/서브 메뉴 동작, 햄버거 메뉴 등
+// 네비게이션(주/서브 메뉴, 햄버거)
 function initNavigation() {
   const menuItems = document.querySelectorAll('.menu-item.has-sub');
   const nav = document.querySelector('.main-nav');
   const hamburger = document.querySelector('.hamburger');
   let activeMenu = null;
 
-  // 주 메뉴 클릭 시: 파트너 포털/검색 제외하고 페이지 이동 없음
   menuItems.forEach(item => {
     const link = item.querySelector(':scope > a');
     if (!link) return;
 
+    // 주 메뉴 클릭 시: 파트너 포털/검색 제외하고는 페이지 이동 없음
     link.addEventListener('click', e => {
       const text = link.textContent.trim();
       if (text !== '파트너 포털' && text !== '검색') {
@@ -50,7 +50,7 @@ function initNavigation() {
       }
     });
 
-    // 호버 시 서브메뉴 표시
+    // 마우스 오버 시 서브메뉴(메가메뉴) 활성화
     item.addEventListener('mouseenter', () => {
       if (activeMenu && activeMenu !== item) {
         activeMenu.classList.remove('active');
@@ -60,7 +60,7 @@ function initNavigation() {
     });
   });
 
-  // 메뉴 영역 밖 마우스 이동 시 서브 메뉴 닫기
+  // 헤더 영역 밖으로 마우스를 빼면 서브메뉴 닫기
   const header = document.querySelector('.site-header');
   if (header) {
     document.addEventListener('mousemove', e => {
@@ -81,7 +81,7 @@ function initNavigation() {
   }
 }
 
-// 검색 오버레이 + 검색 페이지 이동
+// 검색 오버레이 + search.html 이동
 function initSearchOverlay() {
   const searchOverlay = document.getElementById('searchOverlay');
   const searchToggle = document.querySelector('.btn-search-toggle');
@@ -104,26 +104,23 @@ function initSearchOverlay() {
     });
   }
 
-  // 바깥 클릭 시 닫기
   searchOverlay.addEventListener('click', e => {
     if (e.target === searchOverlay) {
       searchOverlay.classList.remove('active');
     }
   });
 
-  // 검색 폼 제출 시 search.html로 이동
   if (searchForm) {
     searchForm.addEventListener('submit', e => {
       e.preventDefault();
       const q = searchInput ? searchInput.value.trim() : '';
       if (!q) return;
-      // GET 파라미터로 search.html로 이동
       window.location.href = 'search.html?q=' + encodeURIComponent(q);
     });
   }
 }
 
-// URL 쿼리 파싱 유틸
+// URL 쿼리 파싱
 function getQueryParams() {
   const params = {};
   const qs = window.location.search.substring(1);
@@ -136,7 +133,7 @@ function getQueryParams() {
   return params;
 }
 
-// Coming Soon 페이지 초기화
+// Coming soon 페이지 초기화
 function initComingSoonPage() {
   const csTitleEl = document.getElementById('cs-title');
   const csDescEl = document.getElementById('cs-desc');
@@ -151,11 +148,10 @@ function initComingSoonPage() {
   csTitleEl.textContent = title;
   csDescEl.textContent = `${title}와(과) 관련된 Futec Solutions의 상세 정보는 준비 중입니다.`;
 
-  // 카테고리에 따라 배경 스타일 다르게 주고 싶으면 클래스 추가
   csBgEl.classList.add('hero-' + category.replace(/[^a-z0-9_-]/gi, ''));
 
   csBodyEl.innerHTML =
-    `현재 <strong>${title}</strong> 페이지는 준비 중입니다.<br>` +
+    `현재 <strong>${escapeHtml(title)}</strong> 페이지는 준비 중입니다.<br>` +
     `곧 Futec Solutions의 솔루션, 아키텍처, 레퍼런스, 파트너 전략 등을 포함하여 업데이트될 예정입니다.`;
 }
 
@@ -175,7 +171,7 @@ function initSearchPage() {
 
   queryTextEl.innerHTML = `<strong>"${escapeHtml(q)}"</strong>에 대한 검색 결과입니다.`;
 
-  // 간단한 로컬 검색용 데이터 (필요시 확장 가능)
+  // 간단한 로컬 검색 데이터
   const pages = [
     {
       title: '비전',
@@ -225,7 +221,7 @@ function initSearchPage() {
   }
 }
 
-// XSS 방지용 간단 escape
+// XSS 방지용 escape
 function escapeHtml(str) {
   return str
     .replace(/&/g, '&amp;')
