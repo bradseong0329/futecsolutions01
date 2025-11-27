@@ -5,7 +5,8 @@
     --color-text: #222222;
     --color-muted: #777777;
     --color-border: #dcdcdc;
-    --color-divider: #002653;
+    --color-footer-bg: #111827;      /* Footer 및 구분선 공통 색상 */
+    --color-divider: #111827;        /* 주 메뉴 / 서브 메뉴 사이 구분선 */
     --color-accent: #0b69ff;
     --header-height: 72px;
     --max-width: 1100px;
@@ -65,7 +66,7 @@ a:hover {
 }
 
 .logo-img {
-    height: 48px;
+    height: 36px;
     width: auto;
     background-color: #ffffff; /* 로고 배경색을 Header와 분리 */
     padding: 4px 8px;
@@ -147,25 +148,28 @@ a:hover {
     background-color: var(--color-text);
 }
 
+/* 주 메뉴 / 서브 메뉴 사이 구분선 - Footer 와 동일한 색상 */
 .nav-divider {
     height: 3px;
-    background: var(--color-divider);
+    background: var(--color-footer-bg);
 }
 
-/* 서브 메뉴 공통 스타일 */
+/* -------- 메가메뉴 (Genetec 스타일 벤치마크) -------- */
+
 .menu-item {
-    position: relative;
+    position: static;  /* 메가메뉴가 전체 폭 사용 */
 }
 
+/* 메가메뉴 패널 전체 – Header 바로 아래, 전체 가로 폭 */
 .sub-menu {
     position: absolute;
     left: 0;
-    top: calc(100% + 6px);
-    min-width: 220px;
-    background: #f1f4fa;
-    border-radius: 0 0 10px 10px;
+    top: calc(var(--header-height) + 3px);   /* 헤더 + 구분선(3px) 아래 */
+    width: 100%;
+    background: #f9fafc;                     /* 주 메뉴와 동일한 배경색 */
+    border-bottom: 1px solid var(--color-border);
     box-shadow: var(--shadow-soft);
-    padding: 10px 16px 12px;
+    padding: 18px 0 20px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4px);
@@ -173,37 +177,103 @@ a:hover {
     z-index: 900;
 }
 
+/* 메가메뉴 내부 컨테이너 */
+.sub-menu-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 32px;
+}
+
+/* 서브 메뉴 제목 */
 .sub-menu-title {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--color-muted);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
-.sub-menu ul {
+/* 공통 서브 메뉴 리스트 */
+.sub-menu-list {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.sub-menu li a {
+.sub-menu-list li a {
     display: block;
     padding: 6px 0;
     font-size: 0.9rem;
-    color: #111827;
+    color: #111827;         /* 항목을 더 짙은 색상으로 (요구사항) */
     font-weight: 500;
 }
 
-.sub-menu li a:hover {
+.sub-menu-list li a:hover {
     color: var(--color-primary);
 }
 
-/* JS에서 active class를 제어 */
+/* 우측 설명 영역 */
+.sub-menu-desc {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+}
+
+/* 활성화된 메뉴의 서브 메뉴 표시 */
 .menu-item.active > .sub-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+/* ----- 제품 서브메뉴: 2개 제품 유형을 좌우로 배치 ----- */
+/* 좌우 2컬럼로 제품 유형을 배치하고, 각 유형 아래에 추후 상하로 제품 리스트 추가 가능하게 구성 */
+
+.sub-menu-grid-products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));  /* 좌우 2개 */
+    gap: 16px;
+}
+
+.sub-menu-product-type {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.sub-menu-type-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #111827;
+}
+
+/* 제품 유형 하위 제품 리스트 – 수직(상하) 나열 (현재는 1개씩, 추후 여러 개 추가 가능) */
+.sub-menu-product-type .sub-menu-list li a {
+    padding: 4px 0;
+    font-size: 0.9rem;
+}
+
+/* ----- 시장 서브메뉴: 4개 단위로 좌→우 그리드 나열 ----- */
+
+.menu-item[data-menu="market"] .sub-menu-inner {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);  /* 왼쪽 그리드, 오른쪽 설명 */
+}
+
+.menu-item[data-menu="market"] .sub-menu-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));  /* 4개씩 좌→우 */
+    column-gap: 16px;
+    row-gap: 6px;
+}
+
+.menu-item[data-menu="market"] .sub-menu-list li a {
+    padding: 2px 0;  /* 그리드에서 너무 넓지 않게 */
+    font-size: 0.88rem;
 }
 
 /* 검색 오버레이 */
@@ -228,6 +298,7 @@ a:hover {
     max-width: 420px;
     width: 90%;
     box-shadow: var(--shadow-soft);
+    position: relative;
 }
 
 .search-overlay h2 {
@@ -253,7 +324,7 @@ a:hover {
     cursor: pointer;
 }
 
-/* 공통 버튼 스타일 */
+/* 공통 버튼 */
 .btn-primary {
     display: inline-block;
     padding: 8px 18px;
@@ -287,7 +358,7 @@ a:hover {
     color: #ffffff;
 }
 
-/* 메인, 섹션 레이아웃 */
+/* 메인/섹션 */
 .site-main {
     min-height: 60vh;
 }
@@ -378,7 +449,7 @@ a:hover {
     right: -10px;
 }
 
-/* 카테고리별로 색감 변주 가능 (필요 시 추가 변경) */
+/* 카테고리별 색상 변주 */
 .hero-vision {
     background: linear-gradient(135deg, #05387A, #0b69ff);
 }
@@ -437,7 +508,7 @@ a:hover {
     font-weight: 500;
 }
 
-/* 리스트 스타일 */
+/* 리스트 */
 .list-check {
     list-style: none;
     padding-left: 0;
@@ -459,7 +530,7 @@ a:hover {
 
 /* Footer */
 .site-footer {
-    background: #111827;
+    background: var(--color-footer-bg);
     color: #e5e7eb;
     padding: 28px 16px 16px;
     margin-top: 40px;
@@ -609,12 +680,20 @@ a:hover {
 
     .sub-menu {
         position: static;
+        width: 100%;
+        top: 0;
+        box-shadow: none;
+        border-bottom: none;
+        padding: 8px 0 10px;
         opacity: 1;
         visibility: visible;
         transform: none;
-        margin-top: 4px;
-        box-shadow: none;
-        border-radius: 8px;
+    }
+
+    .sub-menu-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        padding: 0;
     }
 
     .header-actions {
@@ -639,4 +718,3 @@ a:hover {
         align-items: flex-start;
     }
 }
-
