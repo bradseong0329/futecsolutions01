@@ -1,81 +1,172 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="logo-area">
-      <!-- 로고 이미지는 Header와 다른 배경색(또는 투명 배경) -->
       <a href="index.html" class="logo-link">
         <img src="assets/img/logo.png" alt="Futec Solutions" class="logo-img">
       </a>
     </div>
+
     <nav class="main-nav">
       <ul class="main-menu">
+        <!-- 제품: 2개 제품 유형을 좌우 배치 (추후 하위 제품은 각 칸에서 상하로 추가) -->
         <li class="menu-item has-sub" data-menu="products">
           <a href="#">제품</a>
           <div class="sub-menu">
-            <div class="sub-menu-title">제품</div>
-            <ul>
-              <li><a href="coming-soon.html?category=ai-analytics&title=AI%20영상분석%20솔루션">AI 영상분석 솔루션</a></li>
-              <li><a href="coming-soon.html?category=it-infra&title=IT%20인프라%20솔루션">IT 인프라 솔루션</a></li>
-            </ul>
+            <div class="sub-menu-inner">
+              <!-- 좌측: 제품 유형 그리드 (2컬럼 좌우) -->
+              <div>
+                <div class="sub-menu-title">제품</div>
+                <div class="sub-menu-grid-products">
+                  <!-- 유형 1: AI 영상분석 솔루션 -->
+                  <div class="sub-menu-product-type">
+                    <div class="sub-menu-type-title">AI 영상분석 솔루션</div>
+                    <ul class="sub-menu-list">
+                      <!-- 현재는 Coming soon용 링크 1개, 추후 하위 제품을 여기에 상하로 추가 -->
+                      <li>
+                        <a href="coming-soon.html?category=ai-analytics&title=AI%20영상분석%20솔루션">
+                          AI 영상분석 솔루션 (Coming soon)
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- 유형 2: IT 인프라 솔루션 -->
+                  <div class="sub-menu-product-type">
+                    <div class="sub-menu-type-title">IT 인프라 솔루션</div>
+                    <ul class="sub-menu-list">
+                      <!-- 마찬가지로 추후 하위 제품 여러 개로 확장 가능 -->
+                      <li>
+                        <a href="coming-soon.html?category=it-infra&title=IT%20인프라%20솔루션">
+                          IT 인프라 솔루션 (Coming soon)
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- 우측: 제품 설명/코멘트 -->
+              <div class="sub-menu-desc">
+                고품질 AI 영상분석 및 IT 인프라 솔루션을 통해<br>
+                글로벌 VMS 및 엔터프라이즈 환경에 최적화된<br>
+                통합 보안 인프라를 제공합니다.<br><br>
+                각 제품 유형은 현재 <strong>Coming soon</strong> 상태이며,<br>
+                향후 유형별로 세부 제품 라인업을 상하 구조로 추가하여<br>
+                아키텍처, 스펙, 레퍼런스를 제공할 예정입니다.
+              </div>
+            </div>
           </div>
         </li>
+
+        <!-- 시장: 4개 단위로 좌→우 그리드 나열 -->
         <li class="menu-item has-sub" data-menu="market">
           <a href="#">시장</a>
           <div class="sub-menu">
-            <div class="sub-menu-title">시장</div>
-            <ul>
-              <li><a href="coming-soon.html?category=retail&title=리테일(매장)">리테일(매장)</a></li>
-              <li><a href="coming-soon.html?category=campus&title=기업%20캠퍼스">기업 캠퍼스</a></li>
-              <li><a href="coming-soon.html?category=manufacturing&title=제조/물류">제조/물류</a></li>
-              <li><a href="coming-soon.html?category=dc-warehouse&title=데이터센터/창고">데이터센터/창고</a></li>
-              <li><a href="coming-soon.html?category=construction-safety&title=건설/산업안전">건설/산업안전</a></li>
-              <li><a href="coming-soon.html?category=healthcare&title=헬스케어/의료/병원">헬스케어/의료/병원</a></li>
-              <li><a href="coming-soon.html?category=service-hotel&title=서비스/호텔">서비스/호텔</a></li>
-              <li><a href="coming-soon.html?category=public-facility&title=다중이용시설">다중이용시설</a></li>
-              <li><a href="coming-soon.html?category=smart-city&title=스마트%20도시">스마트 도시</a></li>
-              <li><a href="coming-soon.html?category=public-safety&title=공공%20안전">공공 안전</a></li>
-              <li><a href="coming-soon.html?category=critical-infra&title=주요기반시설/에너지/유틸리티">주요기반시설/에너지/유틸리티</a></li>
-              <li><a href="coming-soon.html?category=transport&title=운송–허브/공항">운송–허브/공항</a></li>
-              <li><a href="coming-soon.html?category=education&title=교육%20캠퍼스">교육 캠퍼스</a></li>
-              <li><a href="coming-soon.html?category=gaming&title=게이밍/카지노">게이밍/카지노</a></li>
-            </ul>
+            <div class="sub-menu-inner">
+              <div>
+                <div class="sub-menu-title">시장(Industries)</div>
+                <ul class="sub-menu-list">
+                  <li><a href="coming-soon.html?category=retail&title=리테일(매장)">리테일(매장)</a></li>
+                  <li><a href="coming-soon.html?category=campus&title=기업%20캠퍼스">기업 캠퍼스</a></li>
+                  <li><a href="coming-soon.html?category=manufacturing&title=제조/물류">제조/물류</a></li>
+                  <li><a href="coming-soon.html?category=dc-warehouse&title=데이터센터/창고">데이터센터/창고</a></li>
+                  <li><a href="coming-soon.html?category=construction-safety&title=건설/산업안전">건설/산업안전</a></li>
+                  <li><a href="coming-soon.html?category=healthcare&title=헬스케어/의료/병원">헬스케어/의료/병원</a></li>
+                  <li><a href="coming-soon.html?category=service-hotel&title=서비스/호텔">서비스/호텔</a></li>
+                  <li><a href="coming-soon.html?category=public-facility&title=다중이용시설">다중이용시설</a></li>
+                  <li><a href="coming-soon.html?category=smart-city&title=스마트%20도시">스마트 도시</a></li>
+                  <li><a href="coming-soon.html?category=public-safety&title=공공%20안전">공공 안전</a></li>
+                  <li><a href="coming-soon.html?category=critical-infra&title=주요기반시설/에너지/유틸리티">주요기반시설/에너지/유틸리티</a></li>
+                  <li><a href="coming-soon.html?category=transport&title=운송–허브/공항">운송–허브/공항</a></li>
+                  <li><a href="coming-soon.html?category=education&title=교육%20캠퍼스">교육 캠퍼스</a></li>
+                  <li><a href="coming-soon.html?category=gaming&title=게이밍/카지노">게이밍/카지노</a></li>
+                </ul>
+              </div>
+              <div class="sub-menu-desc">
+                Futec Solutions는 리테일, 캠퍼스, 제조/물류, 데이터센터,<br>
+                공공 안전 등 다양한 산업군에 특화된 아키텍처와 레퍼런스를<br>
+                기반으로 실제 운영 환경에 최적화된 제안을 제공합니다.<br><br>
+                현재 각 시장별 상세 콘텐츠는 <strong>Coming soon</strong>이며,<br>
+                Genetec의 Industries 페이지처럼, 산업별 고객 사례와<br>
+                구성도를 단계적으로 확장해 나갈 예정입니다.
+              </div>
+            </div>
           </div>
         </li>
+
+        <!-- 리소스 -->
         <li class="menu-item has-sub" data-menu="resources">
           <a href="#">리소스</a>
           <div class="sub-menu">
-            <div class="sub-menu-title">리소스</div>
-            <ul>
-              <li><a href="coming-soon.html?category=resources&title=리소스">Coming soon</a></li>
-            </ul>
+            <div class="sub-menu-inner">
+              <div>
+                <div class="sub-menu-title">리소스</div>
+                <ul class="sub-menu-list">
+                  <li><a href="coming-soon.html?category=resources&title=리소스">Coming soon</a></li>
+                </ul>
+              </div>
+              <div class="sub-menu-desc">
+                기술 문서, 아키텍처 가이드, 웨비나, 케이스 스터디 등<br>
+                Futec Solutions의 콘텐츠 허브로 확장될 영역입니다.<br><br>
+                추후 Genetec의 Resources 메뉴처럼, 블로그/백서/영상/웨비나 등<br>
+                형식별로 정리된 라이브러리를 제공할 예정입니다.
+              </div>
+            </div>
           </div>
         </li>
+
+        <!-- 파트너 -->
         <li class="menu-item has-sub" data-menu="partners">
           <a href="#">파트너</a>
           <div class="sub-menu">
-            <div class="sub-menu-title">파트너</div>
-            <ul>
-              <li><a href="coming-soon.html?category=partners&title=파트너">Coming soon</a></li>
-            </ul>
+            <div class="sub-menu-inner">
+              <div>
+                <div class="sub-menu-title">파트너</div>
+                <ul class="sub-menu-list">
+                  <li><a href="coming-soon.html?category=partners&title=파트너">Coming soon</a></li>
+                </ul>
+              </div>
+              <div class="sub-menu-desc">
+                글로벌 VMS 및 AI 영상분석 벤더와의 기술/채널 파트너십,<br>
+                국내 리셀러 및 SI 파트너 프로그램 안내, 파트너 포털 연동 등<br>
+                파트너 에코시스템 관련 콘텐츠가 들어갈 예정입니다.
+              </div>
+            </div>
           </div>
         </li>
+
+        <!-- 회사 -->
         <li class="menu-item has-sub" data-menu="company">
           <a href="#">회사</a>
           <div class="sub-menu">
-            <div class="sub-menu-title">회사</div>
-            <ul>
-              <li><a href="company-vision.html">비전</a></li>
-              <li><a href="company-greeting.html">인사말</a></li>
-              <li><a href="coming-soon.html?category=contact&title=문의">문의</a></li>
-              <li><a href="coming-soon.html?category=events&title=이벤트">이벤트</a></li>
-            </ul>
+            <div class="sub-menu-inner">
+              <div>
+                <div class="sub-menu-title">회사 정보</div>
+                <ul class="sub-menu-list">
+                  <li><a href="company-vision.html">비전</a></li>
+                  <li><a href="company-greeting.html">인사말</a></li>
+                  <li><a href="coming-soon.html?category=contact&title=문의">문의</a></li>
+                  <li><a href="coming-soon.html?category=events&title=이벤트">이벤트</a></li>
+                </ul>
+              </div>
+              <div class="sub-menu-desc">
+                Futec Solutions의 설립 배경, 비전/미션, 경영 철학,<br>
+                주요 활동(이벤트, 뉴스, 고객 스토리 등)을 단계적으로<br>
+                확장해 나갈 영역입니다.<br><br>
+                Genetec의 “About us” 섹션처럼, 회사 아이덴티티와<br>
+                차별화 포인트를 체계적으로 소개할 예정입니다.
+              </div>
+            </div>
           </div>
         </li>
       </ul>
     </nav>
+
+    <!-- 우측: 파트너 포털 / 검색 -->
     <div class="header-actions">
       <a href="coming-soon.html?category=partner-portal&title=파트너%20포털" class="btn-partner-portal">파트너 포털</a>
       <button class="btn-search-toggle" aria-label="검색 열기">검색</button>
     </div>
+
+    <!-- 모바일 햄버거 -->
     <button class="hamburger" aria-label="모바일 메뉴 열기">
       <span></span><span></span><span></span>
     </button>
@@ -93,6 +184,6 @@
     </div>
   </div>
 
-  <!-- 주/서브메뉴 구분선 -->
+  <!-- 주 메뉴와 서브-메뉴 사이 구분선 (Footer와 동일 색상) -->
   <div class="nav-divider"></div>
 </header>
