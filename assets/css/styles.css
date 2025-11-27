@@ -65,7 +65,7 @@ a:hover {
 }
 
 .logo-img {
-    height: 36px;
+    height: 48px;
     width: auto;
     background-color: #ffffff; /* 로고 배경색을 Header와 분리 */
     padding: 4px 8px;
@@ -639,3 +639,4 @@ a:hover {
         align-items: flex-start;
     }
 }
+
