@@ -38,20 +38,41 @@ function initNavigation() {
   const hamburger = document.querySelector('.hamburger');
   let activeMenu = null;
 
+  const isDesktop = () => window.innerWidth > 720;
+
   menuItems.forEach(item => {
     const link = item.querySelector(':scope > a');
     if (!link) return;
 
-    // 주 메뉴 클릭 시: 파트너 포털/검색 제외하고는 페이지 이동 없음
+    // 주 메뉴 클릭 시
     link.addEventListener('click', e => {
       const text = link.textContent.trim();
-      if (text !== '파트너 포털' && text !== '검색') {
-        e.preventDefault();
+
+      // 파트너 포털, 검색은 원래 동작 유지
+      if (text === '파트너 포털' || text === '검색') {
+        return;
       }
+
+      // 기본 링크 동작 막기
+      e.preventDefault();
+
+      if (!isDesktop()) {
+        // 모바일: 아코디언 토글
+        const currentlyActive = item.classList.contains('active');
+        menuItems.forEach(mi => mi.classList.remove('active'));
+        if (!currentlyActive) {
+          item.classList.add('active');
+          activeMenu = item;
+        } else {
+          activeMenu = null;
+        }
+      }
+      // 데스크톱에서는 클릭 시 아무 동작 없음 (hover로만 동작)
     });
 
-    // 마우스 오버 시 서브메뉴(메가메뉴) 활성화
+    // 데스크톱: 마우스 오버 시 서브메뉴(메가메뉴) 활성화
     item.addEventListener('mouseenter', () => {
+      if (!isDesktop()) return;
       if (activeMenu && activeMenu !== item) {
         activeMenu.classList.remove('active');
       }
@@ -60,10 +81,11 @@ function initNavigation() {
     });
   });
 
-  // 헤더 영역 밖으로 마우스를 빼면 서브메뉴 닫기
+  // 데스크톱: 헤더 영역 밖으로 마우스를 빼면 서브메뉴 닫기
   const header = document.querySelector('.site-header');
   if (header) {
     document.addEventListener('mousemove', e => {
+      if (!isDesktop()) return;
       if (!header.contains(e.target)) {
         if (activeMenu) {
           activeMenu.classList.remove('active');
@@ -77,8 +99,23 @@ function initNavigation() {
   if (hamburger && nav) {
     hamburger.addEventListener('click', () => {
       nav.classList.toggle('active');
+      if (!nav.classList.contains('active')) {
+        // 메뉴 접힐 때 서브메뉴도 모두 접기
+        menuItems.forEach(mi => mi.classList.remove('active'));
+        activeMenu = null;
+      }
     });
   }
+
+  // 화면 크기 변경 시 상태 정리
+  window.addEventListener('resize', () => {
+    if (isDesktop()) {
+      // 데스크톱 전환 시: 모바일용 active 초기화 및 nav 닫기
+      menuItems.forEach(mi => mi.classList.remove('active'));
+      activeMenu = null;
+      if (nav) nav.classList.remove('active');
+    }
+  });
 }
 
 // 검색 오버레이 + search.html 이동
